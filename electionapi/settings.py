@@ -76,11 +76,21 @@ WSGI_APPLICATION = 'electionapi.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+    
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ddb0seg1a7tc5n',
+        'USER': 'jtcwzjsbzhvbzz',
+        'PASSWORD': 'fc078f66e987390c6db9a5cd2536461a22230f9a268c7c1c7101bc93ab606747',
+        'HOST': 'ec2-35-173-91-114.compute-1.amazonaws.com',
+        'PORT':  '5432'
     }
 }
+
 
 
 # Password validation
