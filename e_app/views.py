@@ -26,5 +26,5 @@ class MainViewSet(ViewSet):
     def list(self,request):
         data = Main.objects.all()
         serializer = mainserializer(data,many=True)
-        return Response(serializer.data)
+        return JsonResponse(serializer.data,safe=False)
         
