@@ -127,7 +127,7 @@ def init():
     cur.execute('ALTER TABLE e_app_details drop column id;')
     cur.execute('ALTER TABLE e_app_details add id serial;')
     conn.commit()
-    time.sleep(300)
+    
 
     conn.close()
 
