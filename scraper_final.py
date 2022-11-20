@@ -41,10 +41,12 @@ def parliament(conn):
                              f'{id*random.randint(3,9)}', f'{const_num}', id)
             cur.execute(update_script, update_values)
 
-            x = datetime.datetime.now()
+            r = requests.get('https://www.timeanddate.com/worldclock/nepal/kathmandu')
+            soup = BeautifulSoup(r.text,"html.parser")
+            time = soup.find('div',{'class':'bk-focus__qlook'}).find('span').text
             time_script = "UPDATE e_app_main set updated_time=%s where id=%s"
-            new_time = x.strftime('%X')
-            cur.execute(time_script, (new_time, 1))
+            # new_time = time.strftime('%X')
+            cur.execute(time_script, (time, 1))
         print("-----------------------------------------------------\n")
         count += 1
 
@@ -79,11 +81,15 @@ def provincial(conn):
             update_values = (f'{id}', f'{name}', f'{party.strip()}',
                              f'{id*random.randint(6,9)}', f'{id_ext}', id)
             cur.execute(update_script, update_values)
-
-            x = datetime.datetime.now()
+            
+            r = requests.get('https://www.timeanddate.com/worldclock/nepal/kathmandu')
+            soup = BeautifulSoup(r.text,"html.parser")
+            time = soup.find('div',{'class':'bk-focus__qlook'}).find('span').text
             time_script = "UPDATE e_app_main set updated_time=%s where id=%s"
-            new_time = x.strftime('%X')
-            cur.execute(time_script, (new_time, 1))
+            # new_time = time.strftime('%X')
+            cur.execute(time_script, (time, 1))
+
+            
         print("-----------------------------------------------------\n")
 
 
