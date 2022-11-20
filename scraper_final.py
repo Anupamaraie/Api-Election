@@ -1,9 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import psycopg2
-import datetime
 import random
-import time
 
 
 def check_diff():
@@ -45,7 +43,6 @@ def parliament(conn):
             soup = BeautifulSoup(r.text,"html.parser")
             time = soup.find('div',{'class':'bk-focus__qlook'}).find('span').text
             time_script = "UPDATE e_app_main set updated_time=%s where id=%s"
-            # new_time = time.strftime('%X')
             cur.execute(time_script, (time, 1))
         print("-----------------------------------------------------\n")
         count += 1
@@ -86,7 +83,6 @@ def provincial(conn):
             soup = BeautifulSoup(r.text,"html.parser")
             time = soup.find('div',{'class':'bk-focus__qlook'}).find('span').text
             time_script = "UPDATE e_app_main set updated_time=%s where id=%s"
-            # new_time = time.strftime('%X')
             cur.execute(time_script, (time, 1))
 
             
