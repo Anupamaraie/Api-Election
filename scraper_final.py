@@ -36,7 +36,7 @@ def parliament(conn):
 
             update_script = "UPDATE e_app_details SET id=%s,name=%s,party=%s,vote=%s,area_id=%s WHERE id=%s;"
             update_values = (f'{id}', f'{name}', f'{party.strip()}',
-                             f'{id*random.randint(3,9)}', f'{const_num}', id)
+                             f'{0}', f'{const_num}', id)
             cur.execute(update_script, update_values)
 
             r = requests.get('https://www.timeanddate.com/worldclock/nepal/kathmandu')
@@ -76,7 +76,7 @@ def provincial(conn):
 
             update_script = "UPDATE e_app_details SET id=%s,name=%s,party=%s,vote=%s,area_id=%s WHERE id=%s;"
             update_values = (f'{id}', f'{name}', f'{party.strip()}',
-                             f'{id*random.randint(6,9)}', f'{id_ext}', id)
+                             f'{0}', f'{id_ext}', id)
             cur.execute(update_script, update_values)
             
             r = requests.get('https://www.timeanddate.com/worldclock/nepal/kathmandu')
