@@ -74,7 +74,7 @@ def provincial(conn):
             party = candidate.find(
                 'div', class_='candidate-party-name').text.strip()
             vote = candidate.find('span', class_="vote-count").text.strip()
-            print(f"{name} | {party}")
+            #print(f"{name} | {party}")
 
             update_script = "UPDATE e_app_details SET id=%s,name=%s,party=%s,vote=%s,area_id=%s WHERE id=%s;"
             update_values = (f'{id}', f'{name}', f'{party.strip()}',
