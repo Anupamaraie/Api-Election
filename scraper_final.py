@@ -29,6 +29,7 @@ def parliament(conn):
             name = candidate.find('div', class_='nominee-name').text
             party = candidate.find(
                 'div', class_="candidate-party-name").find('a').text
+            vote = candidate.find('div', class_="vote-count").text.strip()
             print(f"{name} | {party.strip()}")
 
             count += 1
@@ -36,7 +37,7 @@ def parliament(conn):
 
             update_script = "UPDATE e_app_details SET id=%s,name=%s,party=%s,vote=%s,area_id=%s WHERE id=%s;"
             update_values = (f'{id}', f'{name}', f'{party.strip()}',
-                             f'{0}', f'{const_num}', id)
+                             f'{vote}', f'{const_num}', id)
             cur.execute(update_script, update_values)
 
             r = requests.get('https://www.timeanddate.com/worldclock/nepal/kathmandu')
@@ -72,11 +73,12 @@ def provincial(conn):
             name = candidate.find('div', class_='nominee-name').text.strip()
             party = candidate.find(
                 'div', class_='candidate-party-name').text.strip()
+            vote = candidate.find('span', class_="vote-count").text.strip()
             print(f"{name} | {party}")
 
             update_script = "UPDATE e_app_details SET id=%s,name=%s,party=%s,vote=%s,area_id=%s WHERE id=%s;"
             update_values = (f'{id}', f'{name}', f'{party.strip()}',
-                             f'{0}', f'{id_ext}', id)
+                             f'{vote}', f'{id_ext}', id)
             cur.execute(update_script, update_values)
             
             r = requests.get('https://www.timeanddate.com/worldclock/nepal/kathmandu')
