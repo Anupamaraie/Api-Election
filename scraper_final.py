@@ -137,7 +137,7 @@ def init():
 
     cur = conn.cursor()
     
-    seats = [2, 23, 16, 17, 3, 4, 5, 6, 11, 10, 18]
+    seats = [2, 23, 16, 17, 3, 4, 5, 6, 11, 10, 20]
     id = 30
     for item in seats:
         id += 1
