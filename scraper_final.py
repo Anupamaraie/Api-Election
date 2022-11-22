@@ -90,7 +90,33 @@ def provincial(conn):
             
         print("-----------------------------------------------------\n")
 
+def hot_seat(i, id_ext, conn):
 
+    url = "https://election.ekantipur.com/?lng=eng"
+
+    html_text = requests.get(url).text
+    soup = BeautifulSoup(html_text, 'html.parser')
+    cards = soup.find_all('div', class_='card')
+    id = 90
+
+    const = cards[i].find('h3', class_='card-title').text.strip().split()
+    print(const[0]+"-"+const[-1])
+    candidates = cards[i].find('ul', class_='candidate-list')
+    leaderboard = candidates.find_all('li', class_='candidate-list__item')
+    cur = conn.cursor()
+    for candidate in leaderboard:
+        name = candidate.find('h4', class_='nominee-name').text.strip()
+        party = candidate.find('h3', class_='party-name').text.strip()
+        vote = candidate.find('div', class_='vote-count').text.strip()
+        print(f"{name} | {party} | {vote}")
+        update_script = "UPDATE e_app_details SET id=%s,name=%s,party=%s,vote=%s,area_id=%s WHERE id=%s;"
+        id += 1
+        update_values = (f'{id}', f'{name}', f'{party}',
+                         f'{vote}', f'{id_ext}', id)
+        cur.execute(update_script, update_values)
+    print("-------------------------------------------------------\n")
+
+        
 def init():
 
     # Initialize datbase connection
@@ -110,10 +136,16 @@ def init():
     provincial(conn)
 
     cur = conn.cursor()
+    
+    seats = [2, 23, 16, 17, 3, 4, 5, 6, 11, 10, 18]
+    id = 30
+    for item in seats:
+        id += 1
+        hot_seat(item, id, conn)
 
-        # Sort the data
+     # Sort the data
 
-        # sort constituencies
+    # sort constituencies
     cur.execute(
             'create table new as select * from e_app_election_area order by id;')
     cur.execute('drop table e_app_election_area;')
