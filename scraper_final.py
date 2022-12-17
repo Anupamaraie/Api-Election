@@ -170,6 +170,6 @@ def init():
     conn.commit()
 
     conn.close()
+ 
 
-
-init()
+init() 
