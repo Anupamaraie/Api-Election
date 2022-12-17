@@ -92,10 +92,10 @@ def provincial(conn):
 def init():
 
     # Initialize datbase connection
-    hostname = 'ec2-35-173-91-114.compute-1.amazonaws.com'
-    database = 'ddb0seg1a7tc5n'
-    username = 'jtcwzjsbzhvbzz'
-    pwd = 'fc078f66e987390c6db9a5cd2536461a22230f9a268c7c1c7101bc93ab606747'
+    hostname = 'ec2-44-194-92-192.compute-1.amazonaws.com'
+    database = 'dbs7ud3vc8mmko'
+    username = 'fwewuizhuazuib'
+    pwd = '3d27558e10cab7826d1d7b0491a32bdeb22621f4ee15decef0759a548a9e775a'
     port_id = 5432
 
     conn = psycopg2.connect(host=hostname,
